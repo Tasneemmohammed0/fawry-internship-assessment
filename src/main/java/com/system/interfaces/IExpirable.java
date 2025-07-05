@@ -1,3 +1,8 @@
 package com.system.interfaces;
 
-public interface IExpirable {}
+import java.util.Date;
+
+public interface IExpirable {
+  boolean isExpired();
+  Date getExpiryDate();
+}

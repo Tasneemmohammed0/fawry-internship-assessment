@@ -1,3 +1,5 @@
 package com.system.interfaces;
 
-public interface IShippable {}
+public interface IShippable {
+  double getWeight();
+}

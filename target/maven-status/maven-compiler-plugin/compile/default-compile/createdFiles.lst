@@ -1,1 +1,11 @@
+com/system/model/Cart.class
+com/system/service/ShippingService.class
+com/system/model/ExpirableProduct.class
+com/system/model/ShippableProduct.class
+com/system/interfaces/IShippable.class
 com/system/App.class
+CartService.class
+ExpirableShippableProduct.class
+com/system/interfaces/IExpirable.class
+com/system/service/CheckoutService.class
+com/system/model/Product.class
