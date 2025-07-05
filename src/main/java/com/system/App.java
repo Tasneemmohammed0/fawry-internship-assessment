@@ -12,10 +12,6 @@ import com.system.service.CartService;
 import com.system.service.CheckoutService;
 import com.system.service.ShippingService;
 
-/**
- * Hello world!
- *
- */
 public class App {
 
   public static void main(String[] args) {
@@ -38,10 +34,10 @@ public class App {
       "Biscuits",
       2.0,
       20,
-      1.0,
+      1,
       LocalDate.now().plusMonths(2)
     );
-    Product tv = new ShippableProduct("Smart TV", 500, 5, 50);
+    Product tv = new ShippableProduct("Smart TV", 500, 5, 10);
     Product mobile = new ShippableProduct("Iphone", 1000, 1, 0.5);
 
     // Customer
@@ -51,7 +47,6 @@ public class App {
     Cart cart = new Cart();
 
     try {
-      System.out.println("Adding products to cart...\n");
       cartService.addProductToCart(cart, cheese, 2);
       cartService.addProductToCart(cart, biscuits, 5);
       cartService.addProductToCart(cart, tv, 1);
