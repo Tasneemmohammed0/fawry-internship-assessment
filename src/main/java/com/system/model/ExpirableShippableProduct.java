@@ -1,22 +1,23 @@
-import java.util.Date;
+package com.system.model;
+
+import java.time.LocalDate;
 
 import com.system.interfaces.IExpirable;
 import com.system.interfaces.IShippable;
-import com.system.model.Product;
 
 public class ExpirableShippableProduct
   extends Product
   implements IShippable, IExpirable {
 
   private double weight;
-  private Date expiryDate;
+  private LocalDate expiryDate;
 
   public ExpirableShippableProduct(
     String name,
     double price,
     Integer quantity,
     double weight,
-    Date expiryDate
+    LocalDate expiryDate
   ) {
     super(name, price, quantity);
     this.weight = weight;
@@ -29,12 +30,12 @@ public class ExpirableShippableProduct
   }
 
   @Override
-  public Date getExpiryDate() {
+  public LocalDate getExpiryDate() {
     return expiryDate;
   }
 
   @Override
   public boolean isExpired() {
-    return new Date().after(expiryDate);
+    return LocalDate.now().isAfter(expiryDate);
   }
 }

@@ -1,30 +1,30 @@
 package com.system.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.system.interfaces.IExpirable;
 
 public class ExpirableProduct extends Product implements IExpirable {
 
-  private Date expiryDate;
+  private LocalDate expiryDate;
 
   public ExpirableProduct(
     String name,
     double price,
     Integer quantity,
-    Date expiryDate
+    LocalDate expiryDate
   ) {
     super(name, price, quantity);
     this.expiryDate = expiryDate;
   }
 
   @Override
-  public Date getExpiryDate() {
+  public LocalDate getExpiryDate() {
     return expiryDate;
   }
 
   @Override
   public boolean isExpired() {
-    return new Date().after(expiryDate);
+    return LocalDate.now().isAfter(expiryDate);
   }
 }

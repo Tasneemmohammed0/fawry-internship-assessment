@@ -1,8 +1,8 @@
 package com.system.interfaces;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public interface IExpirable {
   boolean isExpired();
-  Date getExpiryDate();
+  LocalDate getExpiryDate();
 }

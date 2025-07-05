@@ -69,6 +69,15 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
+          <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <!-- IMPORTANT: The fully qualified name of your main class -->
+                    <mainClass>com.system.App</mainClass>
+                </configuration>
+            </plugin>
       </plugins>
     </pluginManagement>
   </build>

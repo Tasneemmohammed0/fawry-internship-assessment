@@ -1,3 +1,10 @@
+package com.system.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import com.system.interfaces.IShippable;
 import com.system.model.Cart;
 import com.system.model.Product;
 
@@ -70,19 +77,60 @@ public class CartService {
     int newQuantity = currentQuantityInCart - quantity;
     if (newQuantity == 0) {
       cart.getItems().remove(product);
-      System.out.println(
-        "Removed product: " + product.getName() + " from the cart."
-      );
     } else {
       cart.getItems().put(product, newQuantity);
-      System.out.println(
-        "Removed " +
-        quantity +
-        " of product: " +
-        product.getName() +
-        " from the cart. Remaining quantity: " +
-        newQuantity
-      );
     }
+  }
+
+  /**
+   * Method to calculate the total price of the items in the cart
+   *
+   * @param cart - the cart for which the total price will be calculated
+   * @return the total price of the items in the cart
+   */
+  public double calculateTotalPrice(Cart cart) {
+    double totalPrice = 0.0;
+    for (Map.Entry<Product, Integer> entry : cart.getItems().entrySet()) {
+      Product product = entry.getKey();
+      Integer quantity = entry.getValue();
+      totalPrice += product.getPrice() * quantity;
+    }
+    return totalPrice;
+  }
+
+  /**
+   * Method to calculate the total weight of the items in the cart
+   *
+   * @param cart - the cart for which the total weight will be calculated
+   * @return the total weight of the items in the cart
+   */
+  public double calculateTotalWeight(Cart cart) {
+    double totalWeight = 0.0;
+    for (Map.Entry<Product, Integer> entry : cart.getItems().entrySet()) {
+      Product product = entry.getKey();
+      if (product instanceof IShippable) {
+        totalWeight += ((IShippable) product).getWeight() * entry.getValue();
+      }
+    }
+    return totalWeight;
+  }
+
+  /**
+   * Method to get a list of shippable items in the cart
+   *
+   * @param cart - the cart from which shippable items will be retrieved
+   * @return a list of shippable items in the cart
+   */
+  public List<IShippable> getShippableItems(Cart cart) {
+    List<IShippable> shippableItems = new ArrayList<>();
+
+    for (Map.Entry<Product, Integer> entry : cart.getItems().entrySet()) {
+      Product product = entry.getKey();
+      if (product instanceof IShippable) {
+        shippableItems.add((IShippable) product);
+      }
+    }
+
+    return shippableItems;
   }
 }
